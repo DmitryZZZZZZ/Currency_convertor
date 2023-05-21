@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="form-class">
+    <form action="" method="post">
+    {% csrf_token %}
+    <label for="form">Enter Quantity </label>
+    <input type="text" id="form" name="from_amount">
+    <select name="from_curr" id="">
+        {% for curr in currencies %}
+            <option value="{{ curr }}"
+                    {% if from_curr == curr %}
+                    selected
+                    {% endif %}>{{ curr }}</option>
+        {% endfor %}
+    </select>
+    <select name="to_curr" id="">
+        {% for curr in currencies %}
+            <option value="{{ curr }}"
+                    {% if to_curr == curr %}
+                    selected
+                    {% endif %}>{{ curr }}</option>
+        {% endfor %}
+    </select>
+    {% if converted_amount %}
+        {{ converted_amount }}
+    {% endif %}
+    <button type="submit">Go</button>
+    </div>
+    </form>
+
+{% endblock content %}
